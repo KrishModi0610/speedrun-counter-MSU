@@ -21,6 +21,7 @@
 //! Note: this code is a template-only and has not been audited.
 //!
 
+use stylus_cache_sdk::{is_contract_cacheable};
 // Allow `cargo stylus export-abi` to generate a main function.
 #![cfg_attr(not(feature = "export-abi"), no_main)]
 extern crate alloc;
@@ -43,6 +44,10 @@ impl Counter {
     /// Gets the number from storage.
     pub fn number(&self) -> U256 {
         self.number.get()
+    }
+
+    pub fn is_cacheable(&self) -> bool {
+        is_contract_cacheable()
     }
 
     /// Sets a number in storage to a user-specified value.
